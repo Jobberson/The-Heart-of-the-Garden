@@ -1,4 +1,4 @@
-# Contributing to [Your Game Name]
+# Contributing to The Heartof the Garden
 
 Thank you for considering contributing! This document explains how to work with this repository.
 
