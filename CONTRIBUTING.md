@@ -1,4 +1,4 @@
-# Contributing to The Heartof the Garden
+# Contributing to The Heart of the Garden
 
 Thank you for considering contributing! This document explains how to work with this repository.
 
