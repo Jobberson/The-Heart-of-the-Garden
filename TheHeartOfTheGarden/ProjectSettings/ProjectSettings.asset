@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: e6c75b9d5abb7814386aa15713303dd7
+  productGUID: a24cfea1ccc83bf41b6fd0ab609cfd1f
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Snog
-  productName: The Heart of the Garden
+  companyName: DefaultCompany
+  productName: The Heart Test
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -70,6 +70,7 @@ PlayerSettings:
   androidStartInFullscreen: 1
   androidRenderOutsideSafeArea: 1
   androidUseSwappy: 0
+  androidDisplayOptions: 1
   androidBlitType: 0
   androidResizeableActivity: 1
   androidDefaultWindowWidth: 1920
@@ -254,7 +255,7 @@ PlayerSettings:
   appleEnableProMotion: 0
   shaderPrecisionModel: 0
   clonedFromGUID: 3c72c65a16f0acb438eed22b8b16c24a
-  templatePackageId: com.unity.template.urp-blank@17.0.11
+  templatePackageId: com.unity.template.urp-blank@17.0.12
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   useCustomMainManifest: 0
   useCustomLauncherManifest: 0
@@ -520,10 +521,7 @@ PlayerSettings:
       m_Height: 720
       m_Kind: 1
       m_SubKind: 
-  m_BuildTargetBatching:
-  - m_BuildTarget: Standalone
-    m_StaticBatching: 0
-    m_DynamicBatching: 1
+  m_BuildTargetBatching: []
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
@@ -825,22 +823,22 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    GameCoreScarlett: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    Kepler: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    LinuxHeadlessSimulation: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    Nintendo Switch: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    Nintendo Switch 2: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    PS4: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    PS5: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    QNX: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    Standalone: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    VisionOS: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    WebGL: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    XboxOne: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
-    tvOS: UNITY_POST_PROCESSING_STACK_V2;SORTIFY;SORTIFY_ATTRIBUTES;SORTIFY_HIGHLIGHT
+    Android: SORTIFY
+    EmbeddedLinux: SORTIFY
+    GameCoreScarlett: SORTIFY
+    GameCoreXboxOne: SORTIFY
+    Kepler: SORTIFY
+    LinuxHeadlessSimulation: SORTIFY
+    Nintendo Switch: SORTIFY
+    Nintendo Switch 2: SORTIFY
+    PS4: SORTIFY
+    PS5: SORTIFY
+    QNX: SORTIFY
+    Standalone: SORTIFY
+    VisionOS: SORTIFY
+    WebGL: SORTIFY
+    XboxOne: SORTIFY
+    tvOS: SORTIFY
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -861,14 +859,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Cele game
+  metroPackageName: The Heart Test
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Cele game
+  metroApplicationDescription: The Heart Test
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -937,12 +935,12 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 2
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 5d64e7f3-be7f-4e1f-aa94-51774181c13f
+  cloudProjectId: 2e99c938-7c58-488b-90f2-8fab724368d2
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Cele game
+  projectName: The Heart Test
   organizationId: yskyy
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

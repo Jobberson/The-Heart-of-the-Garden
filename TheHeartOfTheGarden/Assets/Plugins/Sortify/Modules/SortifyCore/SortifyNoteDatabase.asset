@@ -12,10 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edfc60b39b4d0c74fac9e7a742e85c74, type: 3}
   m_Name: SortifyNoteDatabase
   m_EditorClassIdentifier: 
-  notes:
-  - objID: SampleScene_HUD_11
-    noteContent: d
-    comments:
-    - userName: es
-      text: 'New Comment: d'
-      timestamp: 2025-11-03
+  notes: []

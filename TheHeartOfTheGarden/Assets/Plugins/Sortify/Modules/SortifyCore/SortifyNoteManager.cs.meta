@@ -14,5 +14,5 @@ AssetOrigin:
   productId: 301537
   packageName: Sortify
   packageVersion: 1.35
-  assetPath: Assets/Sortify/Modules/SortifyCore/SortifyNoteManager.cs
+  assetPath: Assets/Plugins/Sortify/Modules/SortifyCore/SortifyNoteManager.cs
   uploadId: 758539

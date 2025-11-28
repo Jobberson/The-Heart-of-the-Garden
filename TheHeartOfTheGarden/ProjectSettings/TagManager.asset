@@ -4,23 +4,25 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - MirrorPuzzle
+  - Aya
+  - Ura
+  - Oga
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Interactible
-  - Portal
-  - Phone
-  - PostP
-  - Mirror
-  - MirrorPuzzle
-  - Tree
-  - Photoable
-  - CameraPhoto
+  - Interatible
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

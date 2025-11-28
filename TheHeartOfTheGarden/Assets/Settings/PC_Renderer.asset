@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5620182585506740350
+--- !u!114 &-63828127182992707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,22 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b12aed53e60fc8444a4aa90f56d8c57d, type: 3}
-  m_Name: OutlineFeature
+  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
+  m_Name: FullScreenPassRendererFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  settings:
-    outlineLayer:
-      m_Bits: 384
-    maskShader: {fileID: 4800000, guid: a7d929885f7177b449aef88a5df7b38f, type: 3}
-    edgeMaterial: {fileID: 2100000, guid: e4da2bed5ec056c48b78faa904f11277, type: 2}
-    maskScale: 1
-    thickness: 2
-    outlineColor:
-      r: 0
-      g: 0
-      b: 0
-      a: 1
+  injectionPoint: 600
+  fetchColorBuffer: 1
+  requirements: 6
+  passMaterial: {fileID: 2100000, guid: dd93da073af71e44ea4e5df89bc25b82, type: 2}
+  passIndex: 0
+  bindDepthStencilAttachment: 0
+  m_Version: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,9 +46,9 @@ MonoBehaviour:
     probeVolumeBlendStatesCS: {fileID: 7200000, guid: b9a23f869c4fd45f19c5ada54dd82176, type: 3}
   m_RendererFeatures:
   - {fileID: 7833122117494664109}
-  - {fileID: 2809032123106087415}
-  - {fileID: 8993263510304238238}
-  m_RendererFeatureMap: ad6b866f10d7b46cf7516644d5affb269eaa2aa7837dce7c
+  - {fileID: 2469429331885912509}
+  - {fileID: -63828127182992707}
+  m_RendererFeatureMap: ad6b866f10d7b46cbd71fdcce42c4522bd4a9410a83c1dff
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -78,8 +73,8 @@ MonoBehaviour:
   m_DepthAttachmentFormat: 0
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
-  m_IntermediateTextureMode: 1
---- !u!114 &2809032123106087415
+  m_IntermediateTextureMode: 0
+--- !u!114 &2469429331885912509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,11 +84,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
-  m_Name: Pixels
+  m_Name: Pixelize
   m_EditorClassIdentifier: 
   m_Active: 1
-  injectionPoint: 450
-  fetchColorBuffer: 0
+  injectionPoint: 600
+  fetchColorBuffer: 1
   requirements: 0
   passMaterial: {fileID: 2100000, guid: 648b50d9586969446ba691c3b1c3bfc2, type: 2}
   passIndex: 0
@@ -111,37 +106,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62c9c65cf3354c93be831c8bc075510, type: 3}
   m_Name: ScreenSpaceAmbientOcclusion
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   m_Settings:
     AOMethod: 0
-    Downsample: 1
+    Downsample: 0
     AfterOpaque: 0
     Source: 1
     NormalSamples: 1
-    Intensity: 0.75
-    DirectLightingStrength: 1
-    Radius: 0.1
-    Samples: 0
+    Intensity: 0.4
+    DirectLightingStrength: 0.25
+    Radius: 0.3
+    Samples: 1
     BlurQuality: 0
-    Falloff: 5
+    Falloff: 100
     SampleCount: -1
---- !u!114 &8993263510304238238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
-  m_Name: Outlines
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  injectionPoint: 600
-  fetchColorBuffer: 1
-  requirements: 6
-  passMaterial: {fileID: 2100000, guid: dd93da073af71e44ea4e5df89bc25b82, type: 2}
-  passIndex: 0
-  bindDepthStencilAttachment: 1
-  m_Version: 1

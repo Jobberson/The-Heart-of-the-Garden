@@ -11,5 +11,5 @@ AssetOrigin:
   productId: 301537
   packageName: Sortify
   packageVersion: 1.35
-  assetPath: Assets/Sortify/Modules/SortifyCore/SortifyNoteDatabase.asset
+  assetPath: Assets/Plugins/Sortify/Modules/SortifyCore/SortifyNoteDatabase.asset
   uploadId: 758539
