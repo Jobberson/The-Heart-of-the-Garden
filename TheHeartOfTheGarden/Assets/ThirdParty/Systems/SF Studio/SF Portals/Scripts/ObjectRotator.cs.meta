@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d1f50dfda87f18845a749340eca7d102
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 284966
+  packageName: SciFi Portals - Seamless Teleportation
+  packageVersion: 1.0.3
+  assetPath: Assets/SF Studio/SF Portals/Scripts/ObjectRotator.cs
+  uploadId: 801548

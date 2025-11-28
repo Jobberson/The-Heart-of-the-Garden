@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 06ac889155f5f804085e766c43b4f336
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 284966
+  packageName: SciFi Portals - Seamless Teleportation
+  packageVersion: 1.0.3
+  assetPath: Assets/SF Studio/SF Portals/Scripts/MainCamera.cs
+  uploadId: 801548

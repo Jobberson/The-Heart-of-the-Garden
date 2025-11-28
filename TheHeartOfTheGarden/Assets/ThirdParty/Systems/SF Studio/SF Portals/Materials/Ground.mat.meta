@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 27dc28b75b03605469ccac2945157672
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 284966
+  packageName: SciFi Portals - Seamless Teleportation
+  packageVersion: 1.0.3
+  assetPath: Assets/SF Studio/SF Portals/Materials/Ground.mat
+  uploadId: 801548

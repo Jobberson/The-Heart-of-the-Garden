@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 1f587816e26ea19429a21d5318c6a780
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 284966
+  packageName: SciFi Portals - Seamless Teleportation
+  packageVersion: 1.0.3
+  assetPath: Assets/SF Studio/SF Portals/ShaderGraphs/SF Slice.shadergraph
+  uploadId: 801548
