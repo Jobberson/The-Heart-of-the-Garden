@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f21f92625028480478a24f54534e58f7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 296859
+  packageName: Awesome Attributes
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/AwesomeAttributes/Scripts/Editor/ShowIf/ConditionalAttributeDrawerBase.cs
+  uploadId: 778639

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d3a8021ae2c38014da7a2b806f6f3c48
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 296859
+  packageName: Awesome Attributes
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/AwesomeAttributes/Scripts/Editor/ResourcesPath/ResourcesPathAttributeDrawer.cs
+  uploadId: 778639

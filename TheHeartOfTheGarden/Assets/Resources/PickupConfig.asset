@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1ff85eb2d774e40a2c7c13612b8ccf, type: 3}
+  m_Name: PickupConfig
+  m_EditorClassIdentifier: 
+  holdLocalPosition: {x: 0, y: -0.2, z: 1.2}
+  holdLocalEuler: {x: 0, y: 0, z: 0}
+  throwForce: 6
+  jointBreakForce: 1000
+  jointBreakTorque: 1000
+  ignorePlayerCollision: 1
+  defaultInterpolation: 1

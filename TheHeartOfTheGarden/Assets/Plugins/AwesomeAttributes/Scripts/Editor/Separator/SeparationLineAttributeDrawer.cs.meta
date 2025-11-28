@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b6f99164392f43f4fa628ee990d064a9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 296859
+  packageName: Awesome Attributes
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/AwesomeAttributes/Scripts/Editor/Separator/SeparationLineAttributeDrawer.cs
+  uploadId: 778639

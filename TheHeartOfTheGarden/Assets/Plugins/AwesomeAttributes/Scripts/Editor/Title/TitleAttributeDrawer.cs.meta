@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 33f74f62bbf2d004a915a013d815399b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 296859
+  packageName: Awesome Attributes
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/AwesomeAttributes/Scripts/Editor/Title/TitleAttributeDrawer.cs
+  uploadId: 778639

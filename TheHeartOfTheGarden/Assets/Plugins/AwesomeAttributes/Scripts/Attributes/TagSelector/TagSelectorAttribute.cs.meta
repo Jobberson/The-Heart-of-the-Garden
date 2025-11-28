@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 5c7bd3ee5205dc74281b3ba679cb9391
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 296859
+  packageName: Awesome Attributes
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/AwesomeAttributes/Scripts/Attributes/TagSelector/TagSelectorAttribute.cs
+  uploadId: 778639

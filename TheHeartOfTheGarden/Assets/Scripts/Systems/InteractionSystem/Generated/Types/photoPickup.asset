@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90f78ef4615fbf4baa328338c633aa3, type: 3}
+  m_Name: photoPickup
+  m_EditorClassIdentifier: 
+  typeName: photoPickup
+  behaviorScript: {fileID: 11500000, guid: 371f5b27508f9a540823004bc8fab62a, type: 3}
+  prompt: {fileID: 11400000, guid: beb1eb405f8fd954bb88e183933e549a, type: 2}

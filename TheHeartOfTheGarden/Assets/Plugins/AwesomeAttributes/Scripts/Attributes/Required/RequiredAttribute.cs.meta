@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4c7a6f82f8c0b7640b7f2168f43eae54
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 296859
+  packageName: Awesome Attributes
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/AwesomeAttributes/Scripts/Attributes/Required/RequiredAttribute.cs
+  uploadId: 778639

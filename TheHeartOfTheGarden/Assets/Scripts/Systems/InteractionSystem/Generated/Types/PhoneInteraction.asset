@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90f78ef4615fbf4baa328338c633aa3, type: 3}
+  m_Name: PhoneInteraction
+  m_EditorClassIdentifier: 
+  typeName: PhoneInteraction
+  behaviorScript: {fileID: 11500000, guid: 70c28df1227cb2242a792a0a84fc76f1, type: 3}
+  prompt: {fileID: 11400000, guid: 75286279e5cf2ea49bcaaa8b26c60f62, type: 2}
