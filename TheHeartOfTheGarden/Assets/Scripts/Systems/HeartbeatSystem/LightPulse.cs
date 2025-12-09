@@ -10,46 +10,46 @@ using System.Collections;
 public class LightPulse : MonoBehaviour
 {
     [Header("Target Light")]
-    public Light targetLight;
+    [SerializeField] private Light targetLight;
 
     [Tooltip("Base intensity the light returns to between pulses.")]
-    public float baseIntensity = 0.0f;
+    [SerializeField] private float baseIntensity = 0.0f;
 
     [Header("Lub (first beat) envelope")]
     [Tooltip("Peak intensity added on top of base for lub.")]
-    public float lubPeak = 2.0f;
+    [SerializeField] private float lubPeak = 2.0f;
 
     [Tooltip("Duration of the lub envelope, seconds.")]
     [Range(0.05f, 1.0f)]
-    public float lubDuration = 0.20f;
+    [SerializeField] private float lubDuration = 0.20f;
 
     [Tooltip("Curve for intensity over time (0..1) for lub. Value multiplies lubPeak.")]
-    public AnimationCurve lubCurve = AnimationCurve.EaseInOut(0, 0, 0.15f, 1);
+    [SerializeField] private AnimationCurve lubCurve = AnimationCurve.EaseInOut(0, 0, 0.15f, 1);
 
     [Header("Dub (second beat) envelope")]
     [Tooltip("Peak intensity added on top of base for dub.")]
-    public float dubPeak = 1.3f;
+    [SerializeField] private float dubPeak = 1.3f;
 
     [Tooltip("Duration of the dub envelope, seconds.")]
     [Range(0.05f, 1.0f)]
-    public float dubDuration = 0.16f;
+    [SerializeField] private float dubDuration = 0.16f;
 
     [Tooltip("Curve for intensity over time (0..1) for dub. Value multiplies dubPeak.")]
-    public AnimationCurve dubCurve = AnimationCurve.EaseInOut(0, 0, 0.1f, 1);
+    [SerializeField] private AnimationCurve dubCurve = AnimationCurve.EaseInOut(0, 0, 0.1f, 1);
 
     [Header("Options")]
     [Tooltip("Multiply peak by per-cycle intensity from the conductor.")]
-    public bool useCycleIntensity = true;
+    [SerializeField] private bool useCycleIntensity = true;
 
     [Tooltip("If true, a new beat interrupts the current envelope; otherwise envelopes layer additively.")]
-    public bool interruptOnNewBeat = true;
+    [SerializeField] private bool interruptOnNewBeat = true;
 
     [Tooltip("Clamp final intensity to avoid blinding.")]
-    public float maxIntensityClamp = 10f;
+    [SerializeField] private float maxIntensityClamp = 10f;
 
     private Coroutine _pulseRoutine;
     private float _additiveEnvelope; 
-    
+
     private void Reset()
     {
         targetLight = GetComponent<Light>();

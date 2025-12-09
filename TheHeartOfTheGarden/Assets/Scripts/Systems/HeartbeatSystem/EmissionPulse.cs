@@ -9,29 +9,29 @@ using System.Collections;
 public class EmissionPulse : MonoBehaviour
 {
     [Header("Target")]
-    public Renderer targetRenderer;
+    [SerializeField] private Renderer targetRenderer;
 
     [Tooltip("Emission color tint.")]
-    public Color emissionColor = new Color(1f, 0.2f, 0.2f);
+    [SerializeField] private Color emissionColor = new Color(1f, 0.2f, 0.2f);
 
     [Tooltip("Base emissive intensity (multiplied by color).")]
-    public float baseEmission = 0f;
+    [SerializeField] private float baseEmission = 0f;
 
     [Header("Lub Envelope")]
-    public float lubPeak = 2f;
+    [SerializeField] private float lubPeak = 2f;
     [Range(0.05f, 1.0f)]
-    public float lubDuration = 0.20f;
-    public AnimationCurve lubCurve = AnimationCurve.EaseInOut(0, 0, 0.15f, 1);
+    [SerializeField] private float lubDuration = 0.20f;
+    [SerializeField] private AnimationCurve lubCurve = AnimationCurve.EaseInOut(0, 0, 0.15f, 1);
 
     [Header("Dub Envelope")]
-    public float dubPeak = 1.3f;
+    [SerializeField] private float dubPeak = 1.3f;
     [Range(0.05f, 1.0f)]
-    public float dubDuration = 0.16f;
-    public AnimationCurve dubCurve = AnimationCurve.EaseInOut(0, 0, 0.10f, 1);
+    [SerializeField] private float dubDuration = 0.16f;
+    [SerializeField] private AnimationCurve dubCurve = AnimationCurve.EaseInOut(0, 0, 0.10f, 1);
 
     [Header("Options")]
     [Tooltip("Multiply peak by per-cycle intensity from the conductor.")]
-    public bool useCycleIntensity = true;
+    [SerializeField] private bool useCycleIntensity = true;
 
     private Material _matInstance;
     private Coroutine _routine;
