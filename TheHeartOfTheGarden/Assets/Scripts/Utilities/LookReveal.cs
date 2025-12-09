@@ -2,11 +2,11 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(Renderer))]
-public class LookReveal_FadeSimple : MonoBehaviour
+public class LookReveal : MonoBehaviour
 {
     public Camera cam;
     public float angleCosThreshold = 0.86f;
-    public Material overlayMaterial; // shader must have a _Color (RGBA) we can change
+    public Material overlayMaterial; 
     public float fadeDuration = 0.25f;
     public bool revealOnlyIfOccluded = true;
 
@@ -21,7 +21,7 @@ public class LookReveal_FadeSimple : MonoBehaviour
         rend = GetComponent<Renderer>();
         if (cam == null) cam = Camera.main;
         if (overlayMaterial != null) {
-            overlayInstance = new Material(overlayMaterial); // instance
+            overlayInstance = new Material(overlayMaterial); 
             overlayBaseColor = overlayInstance.HasProperty("_Color") ? overlayInstance.GetColor("_Color") : Color.white;
         }
     }
@@ -54,19 +54,15 @@ public class LookReveal_FadeSimple : MonoBehaviour
 
     IEnumerator FadeTo(float target)
     {
-        // Ensure overlay is present in renderer (we draw overlay on top by swapping material each frame with instance)
-        // This will create an instance on the renderer when overlay alpha > 0
         float start = 0f;
-        // try read current alpha from instance
         if (overlayInstance.HasProperty("_Color")) start = overlayInstance.GetColor("_Color").a;
         float t = 0f;
 
-        // if starting from 0 and going to >0, assign overlay material alongside original as second material
         if (start == 0f && target > 0f) {
             var mats = rend.sharedMaterials;
             System.Array.Resize(ref mats, Mathf.Max(1, mats.Length) + 1);
             mats[mats.Length - 1] = overlayInstance;
-            rend.materials = mats; // creates instance for renderer materials
+            rend.materials = mats;
         }
 
         while (t < 1f)
@@ -81,10 +77,8 @@ public class LookReveal_FadeSimple : MonoBehaviour
             yield return null;
         }
 
-        // finished
         if (target <= 0f)
         {
-            // remove overlay slot to avoid invisible instances
             var mats = rend.sharedMaterials;
             if (mats.Length > 1)
             {

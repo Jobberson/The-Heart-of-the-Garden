@@ -19,14 +19,13 @@ public class GrowVines : MonoBehaviour
             var ivy = ivyControllers[i];
             if (ivy == null) continue;
 
-            int idx = i;                         // local copy if you need the index
-            float delay = idx;              // stagger example
-            string timerId = $"GrowVine_{idx}_{GetInstanceID()}"; // unique ID for this instance
-
+            int idx = i;                         
+            float delay = idx;              
+            string timerId = $"GrowVine_{idx}_{GetInstanceID()}"; 
             TimerManager.Instance.CreateTimer(
                 timerId,
                 delay,
-                false, // one-shot (probably what you want)
+                false, 
                 () =>
                 {
                     Debug.Log($"[{name}] Timer fired: {timerId} -> StartGrowth on ivy #{idx}");
