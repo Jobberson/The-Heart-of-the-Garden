@@ -3,64 +3,64 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioSourcePool : MonoBehaviour
+public class AudioSourcePool : Singleton<AudioSourcePool>
 {
     public static AudioSourcePool Instance { get; private set; }
     public int poolSize = 10;
     public AudioMixerGroup fxGroup;
-    private Queue<AudioSource> Pool = new();
+
+    private readonly Queue<AudioSource> available = new();
+    private readonly HashSet<AudioSource> inUse = new();
 
     void Awake()
     {
-        Singleton();
-        
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject go = new("PooledAudioSource");
+            var go = new GameObject("PooledAudioSource");
             go.transform.parent = transform;
-            AudioSource source = go.AddComponent<AudioSource>();
-            source.playOnAwake = false;
-            source.outputAudioMixerGroup = fxGroup;
-            Pool.Enqueue(source);
+            var src = go.AddComponent<AudioSource>();
+            src.playOnAwake = false;
+            src.outputAudioMixerGroup = fxGroup;
+            src.spatialBlend = 1f;
+            available.Enqueue(src);
         }
     }
 
-    public void PlayClip(AudioClip clip, Vector3 position, float volume)
+    public void PlayClip(AudioClip clip, Vector3 pos, float volume)
     {
-        AudioSource source = Pool.Dequeue();
-        source.transform.position = position;
-        source.clip = clip;
-        source.volume = volume;
-        source.spatialBlend = 1f;
-        source.Play();
-        StartCoroutine(ReturnToPool(source, clip.length));
-    }
-
-    IEnumerator ReturnToPool(AudioSource source, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Pool.Enqueue(source);
-    }
-
-    public int GetActiveSourceCount()
-    {
-        int count = 0;
-        foreach (var source in Pool)
+        if (clip == null) return;
+        if (available.Count == 0)
         {
-            if (source.isPlaying) count++;
+            // Option A: expand
+            var go = new GameObject("PooledAudioSource");
+            go.transform.parent = transform;
+            var extra = go.AddComponent<AudioSource>();
+            extra.playOnAwake = false;
+            extra.outputAudioMixerGroup = fxGroup;
+            extra.spatialBlend = 1f;
+            available.Enqueue(extra);
         }
-        return count;
+
+        var src = available.Dequeue();
+        inUse.Add(src);
+
+        src.transform.position = pos;
+        src.clip = clip;
+        src.volume = volume;
+        src.Play();
+
+        StartCoroutine(ReturnWhenFinished(src));
     }
 
-    private void Singleton()
+    private IEnumerator ReturnWhenFinished(AudioSource src)
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject); // Prevent duplicates
-            return;
-        }
+        while (src != null && src.isPlaying)
+            yield return null;
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject); // Persist between scenes
+        if (src == null) yield break;
+        inUse.Remove(src);
+        available.Enqueue(src);
     }
+
+    public int GetActiveSourceCount() => inUse.Count;
 }
