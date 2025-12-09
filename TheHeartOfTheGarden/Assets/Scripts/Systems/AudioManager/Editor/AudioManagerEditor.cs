@@ -1,7 +1,8 @@
 using UnityEditor;
 using UnityEngine;
-using Snog.Audio.Libraries;
 using System.Reflection;
+using Snog.Audio.Libraries;
+using Snog.Audio.Layers;
 
 namespace Snog.Audio
 {
@@ -22,6 +23,7 @@ namespace Snog.Audio
 
         private string[] ambientNames;
         private int selectedAmbientIndex;
+        private AmbientProfile profileToTest;
 
         private float fadeDuration = 2f;
         private float playDelay = 0f;
@@ -176,6 +178,7 @@ namespace Snog.Audio
             showAmbientSection = EditorGUILayout.BeginFoldoutHeaderGroup(showAmbientSection, "🌲 Ambient");
             if (showAmbientSection)
             {
+                // --- Existing single-clip ambient controls ---
                 EditorGUILayout.Space(4);
                 selectedAmbientIndex = EditorGUILayout.Popup("Ambient Clip", selectedAmbientIndex, ambientNames);
 
@@ -194,6 +197,53 @@ namespace Snog.Audio
 
                 if (GUILayout.Button("🌄 Fade Out Ambient"))
                     manager.StartCoroutine(manager.StopAmbientFade(fadeDuration));
+
+                // --- New: Layered Ambient Profiles ---
+                EditorGUILayout.Space(8);
+                EditorGUILayout.LabelField("🌲 Ambient Profiles (Layered)", EditorStyles.boldLabel);
+
+                profileToTest = (AmbientProfile)EditorGUILayout.ObjectField("Profile", profileToTest, typeof(AmbientProfile), false);
+
+                using (new EditorGUI.DisabledScope(profileToTest == null))
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    if (GUILayout.Button("▶ Play Profile"))
+                    {
+                        manager.PlayAmbientProfile(profileToTest);
+                    }
+
+                    if (GUILayout.Button("🔀 Crossfade to Profile"))
+                    {
+                        // Use the profile's default fade if available; fallback to inspector fadeDuration
+                        float crossfade = profileToTest != null ? Mathf.Max(0f, profileToTest.defaultFade) : fadeDuration;
+                        manager.StartCoroutine(manager.CrossfadeAmbientProfile(profileToTest, crossfade));
+                    }
+                    EditorGUILayout.EndHorizontal();
+                }
+
+                EditorGUILayout.BeginHorizontal();
+                if (GUILayout.Button("⏹ Stop Profile (Fade)"))
+                {
+                    float stopFade = profileToTest != null ? Mathf.Max(0f, profileToTest.defaultFade) : fadeDuration;
+                    manager.StartCoroutine(manager.StopAmbientProfileFade(stopFade));
+                }
+
+                if (GUILayout.Button("⏹ Stop Profile (Immediate)"))
+                {
+                    manager.StopAmbientProfileImmediate();
+                }
+                EditorGUILayout.EndHorizontal();
+
+                // Optional: quick info about current profile
+                EditorGUILayout.Space(2);
+                if (manager.TryGetCurrentAmbientProfileName(out var currentProfile))
+                {
+                    EditorGUILayout.LabelField("Current Profile:", currentProfile);
+                }
+                else
+                {
+                    EditorGUILayout.LabelField("Current Profile:", "None");
+                }
             }
             EditorGUILayout.EndFoldoutHeaderGroup();
         }

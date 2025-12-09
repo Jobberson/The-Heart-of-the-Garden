@@ -68,8 +68,8 @@ namespace Snog.Audio
 		public List<AudioClip> scannedAmbientClips = new();
 		public List<AudioClip> scannedSFXClips = new();
 
-
 		// Seperate audiosources
+		[SerializeField] private List<AudioSource> ambientLayerSources = new();
 		private AudioSource musicSource;
 		private AudioSource ambientSource;
 		private AudioSource fxSource;
@@ -239,6 +239,18 @@ namespace Snog.Audio
 					break;
 			}
 		}
+	
+		public void SetAmbientLayerVolume(int index, float normalized)
+		{
+			if (index < 0 || index >= ambientLayerSources.Count) return;
+			ambientLayerSources[index].volume = Mathf.Clamp01(normalized) * ambientVolume * masterVolume;
+		}
+
+		public bool TryGetCurrentAmbientProfileName(out string name)
+		{
+			name = currentAmbientProfile != null ? currentAmbientProfile.profileName : "None";
+			return currentAmbientProfile != null;
+		}
 		#endregion
 
 		#region Music controls
@@ -407,6 +419,184 @@ namespace Snog.Audio
 			if (ambientSource == null) return;
 			ambientSource.Stop();
 		}
+		
+		public IEnumerator StopAmbientProfileFade(float duration)
+		{
+			duration = Mathf.Max(0f, duration);
+
+			float time = 0f;
+			var start = new float[ambientLayerSources.Count];
+
+			for (int i = 0; i < ambientLayerSources.Count; i++)
+			{
+				start[i] = ambientLayerSources[i].volume;
+			}
+
+			while (time < duration)
+			{
+				time += Time.deltaTime;
+				float t = duration <= 0f ? 1f : Mathf.Clamp01(time / duration);
+
+				for (int i = 0; i < ambientLayerSources.Count; i++)
+				{
+					ambientLayerSources[i].volume = Mathf.Lerp(start[i], 0f, t);
+				}
+
+				yield return null;
+			}
+
+			for (int i = 0; i < ambientLayerSources.Count; i++)
+			{
+				ambientLayerSources[i].Stop();
+				ambientLayerSources[i].clip = null;
+				ambientLayerSources[i].volume = 0f;
+			}
+
+			currentAmbientProfile = null;
+		}
+
+		public void StopAmbientProfile()
+		{
+			for (int i = 0; i < ambientLayerSources.Count; i++)
+			{
+				ambientLayerSources[i].Stop();
+				ambientLayerSources[i].clip = null;
+				ambientLayerSources[i].volume = 0f;
+			}
+			currentAmbientProfile = null;
+		}
+
+		public IEnumerator CrossfadeAmbientProfile(Snog.Audio.Layers.AmbientProfile next, float duration)
+		{
+			if (next == null || next.layers == null || next.layers.Length == 0)
+				yield break;
+
+			duration = Mathf.Max(0f, duration);
+
+			EnsureAmbientLayerSources(next.layers.Length);
+
+			for (int i = 0; i < next.layers.Length; i++)
+			{
+				var layer = next.layers[i];
+				var src = ambientLayerSources[i];
+
+				if (layer == null || layer.track == null || layer.track.clip == null)
+				{
+					src.Stop();
+					src.clip = null;
+					src.volume = 0f;
+					continue;
+				}
+
+				src.clip = layer.track.clip;
+				src.loop = layer.loop;
+				src.spatialBlend = layer.spatialBlend;
+
+				if (layer.randomStartTime && src.clip.length > 0f)
+					src.time = Random.Range(0f, src.clip.length);
+
+				src.pitch = (layer.pitchRange.x != layer.pitchRange.y)
+					? Random.Range(layer.pitchRange.x, layer.pitchRange.y)
+					: layer.pitchRange.x;
+
+				src.volume = 0f;
+				src.Play();
+			}
+
+			float time = 0f;
+			var fromVolumes = new List<float>(ambientLayerSources.Count);
+			var toVolumes   = new List<float>(ambientLayerSources.Count);
+
+			for (int i = 0; i < ambientLayerSources.Count; i++)
+			{
+				float targetTo = 0f;
+				if (i < next.layers.Length && next.layers[i] != null)
+				{
+					targetTo = Mathf.Clamp01(next.layers[i].volume) * ambientVolume * masterVolume;
+				}
+				toVolumes.Add(targetTo);
+
+				float from = ambientLayerSources[i].clip != null ? ambientLayerSources[i].volume : 0f;
+				fromVolumes.Add(from);
+			}
+
+			// Fade
+			while (time < duration)
+			{
+				time += Time.deltaTime;
+				float t = duration <= 0f ? 1f : Mathf.Clamp01(time / duration);
+
+				for (int i = 0; i < ambientLayerSources.Count; i++)
+				{
+					float from = fromVolumes[i];
+					float to   = toVolumes[i];
+
+					ambientLayerSources[i].volume = Mathf.Lerp(from, to, t);
+				}
+
+				yield return null;
+			}
+
+			for (int i = 0; i < ambientLayerSources.Count; i++)
+			{
+				if (toVolumes[i] <= 0f)
+				{
+					ambientLayerSources[i].Stop();
+					ambientLayerSources[i].clip = null;
+				}
+			}
+
+			currentAmbientProfile = next;
+		}
+
+		public void PlayAmbientProfile(Snog.Audio.Layers.AmbientProfile profile)
+		{
+			if (profile == null || profile.layers == null || profile.layers.Length == 0)
+			{
+				Debug.LogWarning("[AudioManager] AmbientProfile is empty or null.", this);
+				return;
+			}
+
+			EnsureAmbientLayerSources(profile.layers.Length);
+
+			for (int i = 0; i < profile.layers.Length; i++)
+			{
+				var layer = profile.layers[i];
+				var src = ambientLayerSources[i];
+
+				if (layer == null || layer.track == null || layer.track.clip == null)
+				{
+					src.Stop();
+					src.clip = null;
+					src.volume = 0f;
+					continue;
+				}
+
+				src.clip = layer.track.clip;
+				src.loop = layer.loop;
+				src.spatialBlend = layer.spatialBlend;
+
+				// Random start, random pitch
+				if (layer.randomStartTime && src.clip.length > 0f)
+				{
+					src.time = Random.Range(0f, src.clip.length);
+				}
+				if (layer.pitchRange.x != layer.pitchRange.y)
+				{
+					src.pitch = Random.Range(layer.pitchRange.x, layer.pitchRange.y);
+				}
+				else
+				{
+					src.pitch = layer.pitchRange.x;
+				}
+
+				src.volume = Mathf.Clamp01(layer.volume) * ambientVolume * masterVolume;
+				src.Play();
+			}
+
+			currentAmbientProfile = profile;
+		}
+
 		#endregion
 
 		#region Sfx Controls
@@ -526,6 +716,34 @@ namespace Snog.Audio
 		public SoundLibrary GetSoundLibrary() => soundLibrary;
 		public MusicLibrary GetMusicLibrary() => musicLibrary;
 		public AmbientLibrary GetAmbientLibrary() => ambientLibrary;
+
+		private void EnsureAmbientLayerSources(int needed)
+		{
+			if (ambientLayerSources == null)
+				ambientLayerSources = new List<AudioSource>();
+
+			// Create missing sources
+			while (ambientLayerSources.Count < needed)
+			{
+				GameObject go = new GameObject($"Ambient Layer {ambientLayerSources.Count}");
+				go.transform.parent = transform;
+
+				var src = go.AddComponent<AudioSource>();
+				src.playOnAwake = false;
+				src.loop = true;
+				src.outputAudioMixerGroup = ambientGroup; // respect your mixer routing
+
+				ambientLayerSources.Add(src);
+			}
+
+			// Disable extra sources if any
+			for (int i = needed; i < ambientLayerSources.Count; i++)
+			{
+				ambientLayerSources[i].Stop();
+				ambientLayerSources[i].clip = null;
+				ambientLayerSources[i].volume = 0f;
+			}
+		}
 
 		public bool TryGetSoundNames(out string[] names)
 		{
